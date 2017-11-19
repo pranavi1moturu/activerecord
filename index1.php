@@ -197,5 +197,30 @@ class todo extends model
     $html .= '</table>';
 
     print_r($html);
-
+//finding one record in todos table
+    echo "<font size= 4 >Search for one record by id</font>";
+ $record = todos::findOne(4);
+  
+  print_r( "Todo table id - 4");
+  $html = '<table border =5>';
+  $html .= '<tr>';
+    foreach($record[0]as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+    $html .= '</tr>';
+    foreach($record as $key=>$value)
+    {
+       $html .= '<tr>';
+        
+       foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+    
+    print_r($html);
+    
 ?>
