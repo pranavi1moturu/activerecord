@@ -353,4 +353,66 @@ $records = accounts::findAll();
     }
     $html .= '</table>';
     print_r($html);
+    
+    //finding one record in accounts table
+    echo"<h1>Search for one record in accounts table by id</h1>";
+$record = accounts::findOne(2);
+  
+  $html = '<table border = 6>';
+  $html .= '<tr>';
+    
+    foreach($record[0]as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+       
+    $html .= '</tr>';
+
+    
+    foreach($record as $key=>$value)
+    {
+       $html .= '<tr>';
+        
+       foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+    
+    print_r($html);
+
+//deleting one record in accounts table
+echo "<h1>Deleting  One Record in accounts table</h1>";
+$record= new account();
+$id=9;
+$record->delete($id);
+echo '<h3>Record with id: '.$id.' is deleted</h3>';
+$record = accounts::findAll();
+
+$html = '<table border = 5>';
+ 
+  
+  $html .= '<tr>';
+    
+    foreach($record[0] as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+       
+    $html .= '</tr>';
+    foreach($record as $key=>$value)
+    {
+        $html .= '<tr>';
+        
+        foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+echo "<h2>Accounts table after deleteing one record</h2>";
+print_r($html);
 ?>
