@@ -223,4 +223,35 @@ class todo extends model
     
     print_r($html);
     
+    //delete one record in todo table
+echo  "<font size=5 >deleting one record</font>";
+$record= new todo();
+$id=42;
+$record->delete($id);
+echo '<h2>Record with id: '.$id.' is deleted</h2>';
+//'<h3>Todos table After the record is Deleted</h3>';
+$record = todos::findAll();
+$html = '<table border = 5>';
+  
+  $html .= '<tr>';
+    
+    foreach($record[0] as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+       
+    $html .= '</tr>';
+    foreach($record as $key=>$value)
+    {
+        $html .= '<tr>';
+        
+        foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+echo "<h2>Todos table after the record with specified id is deleted</h2>";
+print_r($html);
 ?>
