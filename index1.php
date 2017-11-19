@@ -415,4 +415,75 @@ $html = '<table border = 5>';
     $html .= '</table>';
 echo "<h2>Accounts table after deleteing one record</h2>";
 print_r($html);
+
+//updating record in accounts table
+echo "<h2>Updating one record in accounts table</h1>";
+$id=4;
+$record = new account();
+$record->id=$id;
+$record->fname="sample";
+$record->lname="name";
+$record->gender="female";
+$record->save();
+$record = accounts::findAll();
+echo "<h2>Record is updated with id: ".$id."</h3>";
+        
+$html = '<table border = 5>';
+
+  $html .= '<tr>';
+    
+    foreach($record[0] as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+       
+    $html .= '</tr>';
+    foreach($record as $key=>$value)
+    {
+        $html .= '<tr>';
+        
+        foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+ 
+ print_r($html);
+ 
+ //Inserting one record in accounts table
+ echo "<h2> Inserting one record in accounts table</h2>";
+$record = new account();
+$record->email="janedoe@hotmail.com";
+$record->fname="jane";
+$record->lname="doe";
+$record->phone="565-854-7812";
+$record->birthday="02-01-1993";
+$record->gender="male";
+$record->password="158";
+$record->save();
+$records = accounts::findAll();
+$html = '<table border = 5>';
+  $html .= '<tr>';
+    foreach($records[0] as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+    $html .= '</tr>';
+    foreach($records as $key=>$value)
+    {
+        $html .= '<tr>';
+        
+        foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+echo "<h2>After Inserting one record in accounts table </h2>";
+print_r($html);
+
+
 ?>
