@@ -326,4 +326,31 @@ $html = '<table border = 5>';
     echo "<h3> After Inserting one record</h3>";
     $html .= '</table>';
 print_r($html);
+
+echo "<h1>Search for all records in accounts table</h1>";
+$records = accounts::findAll();
+  
+  $html = '<table border = 5>';
+
+  
+  $html .= '<tr>';
+    foreach($records[0] as $key=>$value)
+        {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+       
+    $html .= '</tr>';
+
+    foreach($records as $key=>$value)
+    {
+        $html .= '<tr>';
+        
+        foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    $html .= '</table>';
+    print_r($html);
 ?>
