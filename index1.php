@@ -255,14 +255,21 @@ $html = '<table border = 5>';
 echo "<h2>Todos table after the record with specified id is deleted</h2>";
 print_r($html);
 
-//delete one record in todo table
-echo  "<font size=5 >deleting one record</font>";
-$record= new todo();
-$id=42;
-$record->delete($id);
-echo '<h2>Record with id: '.$id.' is deleted</h2>';
-//'<h3>Todos table After the record is Deleted</h3>';
+//update one record in todos table
+echo "<font size=5 >Update one record in todos table</font>";
+$id=4;
+$record = new todo();
+$record->id=$id;
+$record->owneremail="nav@hotmail.com";
+$record->ownerid="20";
+$record->createddate="01-02-1995";
+$record->duedate="02-01-1995";
+$record->message="updated record";
+$record->isdone="1";
+$record->save();
 $record = todos::findAll();
+echo "<h2>Record update with id: ".$id."</h2>";
+        
 $html = '<table border = 5>';
   
   $html .= '<tr>';
@@ -284,6 +291,39 @@ $html = '<table border = 5>';
         $html .= '</tr>';
     }
     $html .= '</table>';
-echo "<h2>Todos table after the record with specified id is deleted</h2>";
+ echo  "<font size=4> Todos table with specified id is updated </font>";
+ print_r($html);
+
+//insert record
+   echo "<font size=4> Insert One Record in Todos table</font>";
+        $record = new todo();
+        $record->owneremail="ght@njit.edu";
+        $record->ownerid=4;
+        $record->createddate="09-10-1994";
+        $record->duedate="10-13-1994";
+        $record->message="inserted record";
+        $record->isdone=1;
+        $record->save();
+        $records = todos::findAll();
+     $html = '<table border = 5>';
+      $html .= '<tr>';
+      foreach($records[0] as $key=>$value)
+         {
+            $html .= '<th>' . htmlspecialchars($key) . '</th>';
+        }
+       
+    $html .= '</tr>';
+    foreach($records as $key=>$value)
+    {
+        $html .= '<tr>';
+        
+        foreach($value as $key2=>$value2)
+        {
+            $html .= '<td>' . htmlspecialchars($value2) . '<br></td>';
+        }
+        $html .= '</tr>';
+    }
+    echo "<h3> After Inserting one record</h3>";
+    $html .= '</table>';
 print_r($html);
 ?>
